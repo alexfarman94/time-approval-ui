@@ -1,0 +1,24 @@
+public class TimeApprovalController {
+    
+    // Method to retrieve Shift records based on specified criteria
+    public static List<sirenum__Shift__c> getShifts(Date startDate, Date endDate, String userId) {
+        List<sirenum__Shift__c> shifts = [SELECT Id, Name, sirenum__Scheduled_Start_Time__c, sirenum__Scheduled_End_Time__c, sirenum__Actual_Start_Time__c, sirenum__Actual_End_Time__c, sirenum__Billable_Start_Time__c, sirenum__Billable_End_Time__c, sirenum__Contact__c, sirenum__Team__c, sirenum__Site__c, sirenum__Status__c FROM sirenum__Shift__c WHERE (sirenum__Scheduled_Start_Time__c >= :startDate AND sirenum__Scheduled_Start_Time__c <= :endDate) AND CreatedById = :userId];
+        return shifts;
+    }
+    
+    // Method to update Shift records with new time values or approval status
+    public static void updateShifts(List<sirenum__Shift__c> shifts) {
+        update shifts;
+    }
+    
+    // Method to validate user inputs before updating Shift records
+    public static Boolean validateInputs(List<sirenum__Shift__c> shifts) {
+        // Insert validation logic here
+        return true;
+    }
+    
+    // Method to trigger email notifications to approvers
+    public static void sendEmailNotification(List<sirenum__Shift__c> shifts, String notificationType) {
+        // Insert email notification logic here
+    }
+}
